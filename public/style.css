@@ -1,0 +1,14 @@
+body {
+	background-image: url("assets/Backgrounds/Background - Noise 2.png");
+	font-size: .75rem;
+}
+
+body > .container-fluid {
+	max-width: 1440px;
+	min-width: 360px;
+}
+
+.card {
+	margin: .75rem;
+	word-wrap: break-word;
+}
