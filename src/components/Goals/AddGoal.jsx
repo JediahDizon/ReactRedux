@@ -5,6 +5,7 @@ import { addGoal } from "../../actions";
 
 //STYLE
 import { Button, 
+	Card, CardBlock, CardTitle, CardSubtitle,
 	Form, FormGroup, Label, 
 	Input } from "reactstrap";
 
@@ -19,8 +20,12 @@ class AddGoal extends Component {
 	
 	render() {
 		return (
-			<div className="row">
-				<div className="col-12">
+			<Card>
+				<CardBlock>
+					<CardTitle>
+						Add Goal
+					</CardTitle>
+					<CardSubtitle><hr /></CardSubtitle>
 					<Form>
 						<FormGroup>
 							<Label for="goalTitle">Title</Label>
@@ -30,11 +35,10 @@ class AddGoal extends Component {
 							<Label for="goalDescription">Description</Label>
 							<Input type="textarea" id="goalDescription" placeholder="I have to..." onChange={ event => this.setState({description: event.target.value}) }></Input>
 						</FormGroup>
-						
 						<Button color="primary" onClick={ () => this.addGoal() }>Create Goal</Button>
 					</Form>
-				</div>
-			</div>
+				</CardBlock>
+			</Card>
 		)
 	}
 }
@@ -44,10 +48,4 @@ function mapDispatchToProps(dispatch) {
 	return bindActionCreators({ addGoal }, dispatch);
 }
 
-function mapStateToProps(state) {
-	return {
-		goals: state.goals
-	}
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddGoal);
+export default connect(null, mapDispatchToProps)(AddGoal);

@@ -8,6 +8,7 @@ import { createStore} from "redux";
 import "bootstrap/dist/css/bootstrap.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "./assets/style.css";
 
 //COMPONENTS
 import App from "./components/App";

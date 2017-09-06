@@ -1,6 +1,6 @@
 body {
-	background-image: url("assets/Backgrounds/Background - Noise 2.png");
-	font-size: .75rem;
+	background-image: url("./Backgrounds/Background - Noise 2.png");
+	font-size: .75rem !important;
 }
 
 body > .container-fluid {

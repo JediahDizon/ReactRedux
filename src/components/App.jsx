@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import GoalsList from "./Goals/GoalsList";
+import Goals from "./Goals/Goals";
 
 //ROUTER
 import { Router, Route, browserHistory } from "react-router";
@@ -9,8 +9,7 @@ class App extends Component {
 	render() {
 		return (
 			<Router path="/" history={ browserHistory }>
-				<Route path="/" component={ GoalsList } />
-				<Route path="/goalsList" component={ GoalsList } />
+				<Route path="/" component={ Goals } />
 			</Router>
 		)
 	}
