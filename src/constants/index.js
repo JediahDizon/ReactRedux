@@ -1,0 +1,7 @@
+import { ADD_GOAL, REMOVE_GOAL } from "./Goals";
+import { LOAD_FEEDS, LOAD_FEEDS_START, LOAD_FEEDS_ERROR } from "./Feeds";
+
+export { 
+	ADD_GOAL, REMOVE_GOAL, 
+	LOAD_FEEDS, LOAD_FEEDS_START, LOAD_FEEDS_ERROR
+};

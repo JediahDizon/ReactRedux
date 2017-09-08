@@ -1,0 +1,3 @@
+export const LOAD_FEEDS = "LOAD_FEEDS";
+export const LOAD_FEEDS_START = "LOAD_FEEDS_START";
+export const LOAD_FEEDS_ERROR = "LOAD_FEEDS_ERROR";

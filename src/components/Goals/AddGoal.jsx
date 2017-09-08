@@ -10,9 +10,17 @@ import { Button,
 	Input } from "reactstrap";
 
 class AddGoal extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			title: "",
+			description: ""
+		}
+	}
 	addGoal() {
 		if(this.state) {
 			this.props.addGoal(this.state);
+			this.setState({title: "", description: ""});
 		} else {
 			alert("Type in a goal.");
 		}
@@ -29,13 +37,13 @@ class AddGoal extends Component {
 					<Form>
 						<FormGroup>
 							<Label for="goalTitle">Title</Label>
-							<Input type="text" id="goalTitle" placeholder="Title..." onChange={ event => this.setState({title: event.target.value}) } />
+							<Input type="text" id="goalTitle" placeholder="Title..." onChange={ event => this.setState({title: event.target.value}) } value={ this.state.title } />
 						</FormGroup>
 						<FormGroup>
 							<Label for="goalDescription">Description</Label>
-							<Input type="textarea" id="goalDescription" placeholder="I have to..." onChange={ event => this.setState({description: event.target.value}) }></Input>
+							<Input type="textarea" id="goalDescription" placeholder="I have to..." onChange={ event => this.setState({description: event.target.value}) } value={ this.state.description }></Input>
 						</FormGroup>
-						<Button color="primary" onClick={ () => this.addGoal() }>Create Goal</Button>
+						<Button disabled={ !this.state.title ? true : false } color="primary" onClick={ () => this.addGoal() }>Add Goal</Button>
 					</Form>
 				</CardBlock>
 			</Card>

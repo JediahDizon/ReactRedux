@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.16.2",
     "bootstrap": "^4.0.0-alpha.6",
+    "dompurify": "^1.0.2",
     "moment": "^2.18.1",
     "react": "^15.6.1",
     "react-addons-css-transition-group": "^15.6.0",
@@ -17,6 +19,8 @@
     "react-slick": "^0.14.11",
     "reactstrap": "^4.8.0",
     "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0",
     "slick-carousel": "^1.7.1"
   },
   "scripts": {

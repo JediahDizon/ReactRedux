@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 import { removeGoal } from "../../actions";
 
 //STYLE
@@ -19,15 +19,27 @@ class RemoveGoal extends Component {
 	}
 	
 	render() {
+		const elementStyle = { position: "absolute", right: ".5rem", top: ".5rem", fontSize: "1rem", cursor: "pointer" };
 		return (
-			<FontAwesome name="times-circle" style={{ position: "absolute", right: "1.25rem", fontSize: "1rem", cursor: "pointer" }} onClick={ () => this.removeGoal() } />
+			<FontAwesome 
+				name="times-circle" 
+				style={ elementStyle } 
+				onClick={ (event) => { 
+					var cardElement = event.target.parentElement.parentElement;
+					cardElement.style.transition = "all .3s ease";
+					cardElement.style.opacity = "0"
+					setTimeout(() => { 
+						this.removeGoal(); 
+						cardElement.style.transition = "";
+						cardElement.style.opacity = ""
+					}, 300);
+				}} />
 		)
 	}
 }
 
-//REDUX FUNCTIONS
+//REMOVE GOALS
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({ removeGoal }, dispatch);
 }
-
 export default connect(null, mapDispatchToProps)(RemoveGoal);
