@@ -1,4 +1,3 @@
-//REDUX
 import { connect } from "react-redux";
 import Feeds from "./Feeds";
 

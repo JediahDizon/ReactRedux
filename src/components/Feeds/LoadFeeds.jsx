@@ -7,18 +7,26 @@ import { loadFeeds } from "../../actions";
 import { Button } from "reactstrap";
 
 class LoadFeeds extends Component {
-	loadFeeds(rssFeedURL) {
-		this.props.loadFeeds(rssFeedURL);
+	constructor(props) {
+		super(props);
+		this.state = {
+			title: props.title,
+			rssUrl: props.rssUrl
+		};
 	}
-	
+
+	loadFeeds() {
+		this.props.loadFeeds(this.state.rssUrl);
+	}
+
 	render() {
 		return (
-			<div onClick={() => this.loadFeeds(this.props.rssUrl) } style={{ width: "100%", textAlign: "center" }}>{ this.props.title }</div>
+			<div onClick={() => this.loadFeeds() } style={{ width: "100%", padding: ".5em" }}>{ this.state.title }</div>
 		)
 	}
 }
 
-//REDUX FUNCTIONS
+// REDUX FUNCTIONS
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({ loadFeeds }, dispatch);
 }

@@ -9,7 +9,6 @@ import Maps from "./Maps";
 import Feeds from "./Feeds";
 
 class App extends Component {
-	
 	render() {
 		return (
 			<Container {...{ fluid: true }}>
@@ -18,7 +17,6 @@ class App extends Component {
 						<Goals />
 					</Col>
 					<Col xs="12" sm="8" md="9">
-						<Maps />
 						<Feeds />
 					</Col>
 				</Row>

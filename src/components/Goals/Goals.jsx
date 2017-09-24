@@ -1,17 +1,25 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { graphql } from "react-apollo";
 
+// COMPONENTS
 import AddGoal from "./AddGoal";
 import RemoveGoal from "./RemoveGoal";
 
-//STYLE
+// QUERY
+import { getGoals } from "./queries";
+
+// STYLE
 import { Card, CardText, CardBlock, CardTitle, CardSubtitle } from "reactstrap";
+import FontAwesome from "react-fontawesome";
+
 
 //DATE & TIME
 import Moment from "react-moment";
 
-export default class Goals extends Component {
-	showGoals() {
-		const goals = this.props.goals;
+class Goals extends Component {
+	renderGoals() {
+		const goals = this.props.data.Tasks || [];
 		if(goals.length === 0) {
 			return (
 				<Card>
@@ -24,15 +32,16 @@ export default class Goals extends Component {
 				</Card>
 			)
 		}
+
 		return (
 			goals.map((goal, index) => {
 				return (
 					<div key={ index }>
 						<Card>
 							<CardBlock>
-								<RemoveGoal indexToRemove={ index } />
+								<RemoveGoal id={ goal.id } />
 								<CardTitle>{ goal.title }</CardTitle>
-								<CardSubtitle><small><Moment fromNow>{ goal.date }</Moment></small></CardSubtitle>
+								<CardSubtitle><small><Moment fromNow>{ new Date(goal.date) }</Moment></small></CardSubtitle>
 								<hr />
 								<CardText>{ goal.description }</CardText>
 							</CardBlock>
@@ -42,7 +51,31 @@ export default class Goals extends Component {
 			})
 		)
 	}
-	
+
+	renderContents() {
+		if(this.props.data.loading) {
+			return (
+					<FontAwesome
+						name="spinner"
+						size="4x"
+						spin
+						style={{ textAlign: "center", width: "100%", marginTop: "3rem" }}
+						onClick={ () => this.removeGoal() } />
+				);
+		} else {
+			const scrollStyle = {
+				overflow: "auto",
+				maxHeight: "500px"
+			};
+
+			return(
+				<Card style={ scrollStyle }>
+					{ this.renderGoals() }
+				</Card>
+			);
+		}
+	}
+
 	/**
 	 * NOTES
 	 * -
@@ -51,18 +84,13 @@ export default class Goals extends Component {
 	 * and their contents get modified.
 	 */
 	render() {
-		const scrollStyle = {
-			overflow: "auto",
-			maxHeight: "500px"
-		}
-		
-		return (
+		return(
 			<div>
 				<AddGoal/>
-				<Card style={ scrollStyle }>
-					{ this.showGoals() }
-				</Card>
+				{ this.renderContents() }
 			</div>
-		)
+		);
 	}
 }
+
+export default graphql(getGoals)(Goals);

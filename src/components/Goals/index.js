@@ -1,13 +1,18 @@
-import { connect } from "react-redux";
+import gql from "graphql-tag"
+import { graphql } from "react-apollo";
 
-// COMPONENTS
 import Goals from "./Goals";
 
-//GOALS
-function mapStateToProps(state) {
-	return {
-		goals: state.goals
+// QUERY
+const query = gql`
+	{
+	  Tasks {
+	    id
+	    title
+	    description
+	    date
+	  }
 	}
-}
+`;
 
-export default connect(mapStateToProps)(Goals);
+export default graphql(query)(Goals);

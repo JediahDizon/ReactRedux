@@ -1,9 +1,12 @@
 import React, { Component } from "react";
-import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { removeGoal } from "../../actions";
+import { graphql } from "react-apollo";
+import gql from "graphql-tag";
 
-//STYLE
+// QUERY
+import { getGoals, removeGoal } from "./queries";
+
+// STYLE
 import FontAwesome from "react-fontawesome";
 
 /**
@@ -14,32 +17,49 @@ import FontAwesome from "react-fontawesome";
  * position of the goal from the list.
  */
 class RemoveGoal extends Component {
-	removeGoal() {
-		this.props.removeGoal(this.props.indexToRemove);
+	constructor(props) {
+		super(props);
+		this.state = {
+			id: props.id,
+			loading: false
+		};
 	}
-	
+
+	componentWillReceiveProps(newProps) {
+		this.state = {
+			id: newProps.id,
+			loading: false
+		}
+	}
+
+	removeGoal() {
+		this.setState({ loading: true });
+		this.props.mutate({
+			variables: {...this.state },
+			refetchQueries: [{query: getGoals}]
+		}).catch((error) => {
+			console.log(error);
+			this.setState({ loading: false });
+		});;
+	}
+
 	render() {
-		const elementStyle = { position: "absolute", right: ".5rem", top: ".5rem", fontSize: "1rem", cursor: "pointer" };
+		const elementStyle = {
+			position: "absolute",
+			right: ".5rem",
+			top: ".5rem",
+			fontSize: "1rem",
+			cursor: "pointer",
+			opacity: this.state.loading ? .3 : 1 };
 		return (
-			<FontAwesome 
-				name="times-circle" 
-				style={ elementStyle } 
-				onClick={ (event) => { 
-					var cardElement = event.target.parentElement.parentElement;
-					cardElement.style.transition = "all .3s ease";
-					cardElement.style.opacity = "0"
-					setTimeout(() => { 
-						this.removeGoal(); 
-						cardElement.style.transition = "";
-						cardElement.style.opacity = ""
-					}, 300);
-				}} />
+			<FontAwesome
+				name="times"
+				spin={ this.state.loading ? true : false }
+				style={ elementStyle }
+				onClick={ () => this.removeGoal() } />
 		)
 	}
 }
 
-//REMOVE GOALS
-function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ removeGoal }, dispatch);
-}
-export default connect(null, mapDispatchToProps)(RemoveGoal);
+
+export default graphql(removeGoal)(RemoveGoal);

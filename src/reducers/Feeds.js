@@ -4,10 +4,14 @@ import Feed from "../components/Feeds/Feed";
 const feeds = (state = [], action) => {
 	let newState = [];
 	switch(action.type) {
+		case LOAD_FEEDS:
+			newState = [{feed: {...action.payload.feed}, items: [...action.payload.items]}];
+			return newState;
+
 		case LOAD_FEEDS_ERROR:
 			newState = [new Feed({
-				title: "Something Went Wrong", 
-				description: "Feeds cannot be retrieved.", 
+				title: "Something Went Wrong",
+				description: "Feeds cannot be retrieved.",
 				image: "http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png"
 				}, [{
 					title: "Please check RSS url",
@@ -18,11 +22,9 @@ const feeds = (state = [], action) => {
 				}]
 			)];
 			return newState;
-		case LOAD_FEEDS:
-			newState = [{feed: {...action.payload.feed}, items: [...action.payload.items]}];
-			return newState;
-		default:
-			return state;
+
+			default:
+				return state;
 	}
 }
 

@@ -4,11 +4,11 @@ import { connect } from "react-redux";
 // COMPONENT
 import LoadFeeds from "./LoadFeeds";
 
-//STYLE
-import { TabContent, TabPane, Nav, NavItem, NavLink, 
+// STYLE
+import { TabContent, TabPane, Nav, NavItem, NavLink,
 	Row, Col,
 	Card, CardText, CardBlock, CardTitle, CardSubtitle, CardImg,
-	Form, FormGroup, Label, 
+	Form, FormGroup, Label,
 	Input } from "reactstrap";
 import FontAwesome from "react-fontawesome";
 
@@ -20,7 +20,7 @@ import Moment from "react-moment";
 export default class Feeds extends Component {
 	constructor(props) {
 		super(props);
-		
+
 		this.toggle = this.toggle.bind(this);
 		this.state = {
 			nav: {
@@ -32,7 +32,7 @@ export default class Feeds extends Component {
 	componentWillReceiveProps() {
 		this.setState({loading: false});
 	}
-	
+
 	toggle(tab) {
 		if (this.state.activeTab !== tab) {
 			this.setState({
@@ -43,7 +43,7 @@ export default class Feeds extends Component {
 			});
 		}
 	}
-	
+
 	renderFeeds() {
 		const feedsList = this.props.feeds
 		if(feedsList) {
@@ -85,7 +85,7 @@ export default class Feeds extends Component {
 			);
 		}
 	}
-	
+
 	render() {
 		const rssFeedUrls = [{
 			title: "CTV News",
@@ -97,18 +97,18 @@ export default class Feeds extends Component {
 			title: "Equestria Daily",
 			url: "https://EquestriaDaily.com/feeds/posts/default"
 		}];
-		
+
 		return (
 			<Card>
 				<CardBlock>
 					<CardTitle>
-					RSS Feed<span> </span>
-					{	
+					RSS Feed
+					{
 						this.state.loading ? (
-							<FontAwesome
+							<span> <FontAwesome
 							name='circle-o-notch'
 							spin
-							/>
+							/></span>
 						) : ""
 					}
 					</CardTitle>
@@ -116,7 +116,7 @@ export default class Feeds extends Component {
 						{ rssFeedUrls.map((rssFeedUrl, index) => {
 							return(
 								<NavItem key={ index }>
-									<NavLink className={ this.state.nav.activeTab === index ? "active" : ""} 
+									<NavLink style={{ padding: 0 }} className={ this.state.nav.activeTab === index ? "active" : ""}
 										onClick={() => { this.toggle(index); }}>
 										<LoadFeeds rssUrl={ rssFeedUrl.url } title={ rssFeedUrl.title } />
 									</NavLink>
