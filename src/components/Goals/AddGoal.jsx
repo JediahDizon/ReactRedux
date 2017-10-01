@@ -28,7 +28,7 @@ class AddGoal extends Component {
 		if(this.state.title) {
 			this.setState({ loading: true });
 			this.props.mutate({
-				variables: {...this.state, date: new Date().toString()},
+				variables: {...this.state, timestamp: new Date().toString()},
 				refetchQueries: [{query: getGoals}]
 			}).then(() => {
 				this.setState({
