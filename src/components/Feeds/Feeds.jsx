@@ -104,14 +104,15 @@ export default class Feeds extends Component {
 					<CardTitle>
 					RSS Feed
 					{
-						this.state.loading ? (
+						this.state.loading ?
 							<span> <FontAwesome
 							name='circle-o-notch'
 							spin
 							/></span>
-						) : ""
+						: null
 					}
 					</CardTitle>
+
 					<Nav tabs>
 						{ rssFeedUrls.map((rssFeedUrl, index) => {
 							return(
@@ -124,6 +125,7 @@ export default class Feeds extends Component {
 							)
 						})}
 					</Nav>
+
 				 	<TabContent activeTab={ this.state.nav.activeTab }>
 						{ rssFeedUrls.map((rssFeedUrl, index) => {
 							return (
