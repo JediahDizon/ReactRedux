@@ -41,7 +41,7 @@ class Goals extends Component {
 							<CardBlock>
 								<RemoveGoal id={ goal.id } />
 								<CardTitle>{ goal.title }</CardTitle>
-								<CardSubtitle><small><Moment fromNow>{ new Date(goal.date) }</Moment></small></CardSubtitle>
+								<CardSubtitle><small><Moment fromNow>{ new Date(goal.timestamp) }</Moment></small></CardSubtitle>
 								<hr />
 								<CardText>{ goal.description }</CardText>
 							</CardBlock>
@@ -79,7 +79,7 @@ class Goals extends Component {
 	/**
 	 * NOTES
 	 * -
-	 * Whenever the `render` function gets called due to a state update,
+	 * Whenever the `render` function gets called due to a state uptimestamp,
 	 * the DOM elements don't get replaced by new dom. They get mutated
 	 * and their contents get modified.
 	 */
