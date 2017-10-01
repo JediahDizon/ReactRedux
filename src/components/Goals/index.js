@@ -10,7 +10,7 @@ const query = gql`
 	    id
 	    title
 	    description
-	    date
+	    timestamp
 	  }
 	}
 `;

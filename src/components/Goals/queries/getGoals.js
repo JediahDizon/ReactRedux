@@ -6,7 +6,7 @@ export default gql`
 			id
 			title
 			description
-			date
+			timestamp
 		}
 	}
 `;
