@@ -7,6 +7,7 @@ import { Container, Row, Col } from "reactstrap";
 import Goals from "./Goals";
 import Maps from "./Maps";
 import Feeds from "./Feeds";
+import Table from "./Table";
 
 class App extends Component {
 	render() {
@@ -17,7 +18,8 @@ class App extends Component {
 						<Goals />
 					</Col>
 					<Col xs="12" sm="8" md="9">
-						<Feeds />
+						<Table />
+            <Feeds />
 					</Col>
 				</Row>
 			</Container>

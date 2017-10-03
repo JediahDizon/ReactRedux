@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-//STYLE
+// STYLE
 import { Card, CardText, CardBlock, CardTitle, CardSubtitle } from "reactstrap";
 
-//DATE & TIME
+// DATE & TIME
 import Moment from "react-moment";
 
 class Maps extends Component {
@@ -27,7 +27,7 @@ class Maps extends Component {
 
 function mapStateToProps(state) {
 	return {
-		
+
 	}
 }
 

@@ -25,7 +25,7 @@ import { createLogger}  from "redux-logger";
 
 const apolloClient = new ApolloClient({
 	networkInterface: createNetworkInterface({
-		uri: "http://75.158.76.86:3000/graphql"
+		uri: "http://localhost:3000/graphql"
 	})
 });
 const middleware = applyMiddleware(thunk, createLogger(), apolloClient.middleware());

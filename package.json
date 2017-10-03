@@ -18,6 +18,8 @@
     "react-addons-css-transition-group": "^15.6.0",
     "react-addons-transition-group": "^15.6.0",
     "react-apollo": "^1.4.15",
+    "react-data-grid": "^2.0.60",
+    "react-data-grid-addons": "^2.0.60",
     "react-dom": "^15.6.1",
     "react-fontawesome": "^1.6.1",
     "react-moment": "^0.6.4",
